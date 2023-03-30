@@ -8,22 +8,30 @@ import { MdOutlineModeEditOutline } from "react-icons/md";
 import ElementMaker from "./ElementMaker";
 import ClientEdits from "./clientsEdites";
 import ProjectsEdit from "./projectsEdit";
-import AboutMePar from './AboutMe'
+import AboutMePar from "./AboutMe";
 
 const About = () => {
   const [showInputEle, setShowInputEle] = useState(false);
   const [showInputEle1, setShowInputEle1] = useState(false);
   const [showInputEle2, setShowInputEle2] = useState(false);
   const [showInputEle3, setShowInputEle3] = useState(false);
-  const [AboutMe1, setAboutMe] = useState(localStorage.getItem("AboutMe")|| "A fresh graduate with the desire and ability to learn more and improve myself by working on my strengths and weaknesses. I have some experience at React and good knowledge of Angular, NodeJS, and MySQL. Primarily, I am seeking a role where I can learn and work on new things in the web development field, which will upgrade my skills with time and make me more efficient.");
-  localStorage.setItem("AboutMe",AboutMe1)
-  const [Experience, setExperience] = useState(localStorage.getItem("Experience")|| "6 month");
-  localStorage.setItem("Experience",Experience)
-  const [clients, setclients] = useState(localStorage.getItem("clients") || "Not Yet");
-  localStorage.setItem("clients",clients);
-  const [Projects, setProjects] = useState(localStorage.getItem("Projects") || "10 completed");
-  localStorage.setItem("Projects",Projects);
-
+  const [AboutMe1, setAboutMe] = useState(
+    localStorage.getItem("AboutMe") ||
+      "A fresh graduate with the desire and ability to learn more and improve myself by working on my strengths and weaknesses. I have some experience at React and good knowledge of Angular, NodeJS, and MySQL. Primarily, I am seeking a role where I can learn and work on new things in the web development field, which will upgrade my skills with time and make me more efficient."
+  );
+  localStorage.setItem("AboutMe", AboutMe1);
+  const [Experience, setExperience] = useState(
+    localStorage.getItem("Experience") || "6 month"
+  );
+  localStorage.setItem("Experience", Experience);
+  const [clients, setclients] = useState(
+    localStorage.getItem("clients") || "Not Yet"
+  );
+  localStorage.setItem("clients", clients);
+  const [Projects, setProjects] = useState(
+    localStorage.getItem("Projects") || "10 completed"
+  );
+  localStorage.setItem("Projects", Projects);
 
   return (
     <section id="about">
@@ -49,10 +57,9 @@ const About = () => {
                   showInputEle={showInputEle1}
                 />
               </small>
-              <MdOutlineModeEditOutline style={{marginLeft:"5px"}}
+              <MdOutlineModeEditOutline
+                style={{ marginLeft: "5px" }}
                 onClick={() => setShowInputEle1(true)}
-                handleBlur={() => setShowInputEle1(false)}
-                  showInputEle={showInputEle1}
               />
             </article>
             <article className="about_card">
@@ -67,10 +74,9 @@ const About = () => {
                   showInputEle={showInputEle2}
                 />
               </small>
-              <MdOutlineModeEditOutline style={{marginLeft:"5px"}}
+              <MdOutlineModeEditOutline
+                style={{ marginLeft: "5px" }}
                 onClick={() => setShowInputEle2(true)}
-                handleBlur={() => setShowInputEle2(false)}
-                showInputEle={showInputEle2}
               />
             </article>
 
@@ -86,27 +92,24 @@ const About = () => {
                   showInputEle={showInputEle}
                 />
               </small>
-              <MdOutlineModeEditOutline style={{marginLeft:"5px"}}
+              <MdOutlineModeEditOutline
+                style={{ marginLeft: "5px" }}
                 onClick={() => setShowInputEle(true)}
-                handleBlur={() => setShowInputEle(false)}
-                showInputEle={showInputEle}
               />
             </article>
           </div>
           <p>
-             
-          <AboutMePar
-                  value={AboutMe1}
-                  handleChange={(e) => setAboutMe(e.target.value)}
-                  handleDoubleClick={() => setShowInputEle3(true)}
-                  handleBlur={() => setShowInputEle3(false)}
-                  showInputEle={showInputEle3}
-                />
-                <MdOutlineModeEditOutline style={{color:"#faebd7",marginLeft:"5px"}} 
-                         onClick={() => setShowInputEle3(true)}
-                         handleBlur={() => setShowInputEle3(false)}
-                         showInputEle={showInputEle3} />
-         
+            <AboutMePar
+              value={AboutMe1}
+              handleChange={(e) => setAboutMe(e.target.value)}
+              handleDoubleClick={() => setShowInputEle3(true)}
+              handleBlur={() => setShowInputEle3(false)}
+              showInputEle={showInputEle3}
+            />
+            <MdOutlineModeEditOutline
+              style={{ color: "#faebd7", marginLeft: "5px" }}
+              onClick={() => setShowInputEle3(true)}
+            />
           </p>
 
           <a href="contact" className="btn btn-primary">

@@ -1,74 +1,90 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import "./experience.css";
 import { BsFillPatchCheckFill } from "react-icons/bs";
-import { MdOutlineModeEditOutline } from "react-icons/md";
 import { CgAddR } from "react-icons/cg";
 import { RiAddCircleLine } from "react-icons/ri";
-import AddTechForm from './addtechform'
-import AddFieldForm from './addform'
+import AddFieldForm from "./addform";
+import { ExperContext } from "../providers/experProvider";
+import AddTechForm from "./addtechform";
 
 const Experience = () => {
-  const experience = [
-    {
-      id: 1,
-      Title: "Frontend Development",
-      tech: [
-        { id: 1,title: "HTML"},
-        { id: 2,title: "CSS"},
-        { id: 3,title: "Javascript"},
-        { id: 4,title: "ReactJS"},
-        { id: 5,title: "Angular"},
-        { id: 6,title: "Redux"},
-        { id: 7,title: "TypeScript"},
-        { id: 8,title: "BootStrap"},
-      ],
-    },
+  const { fetchExperienceData,ExperienceArray } = useContext(ExperContext);
+  const [showForm, setshowForm] = useState(false);
+  const [showTechForm, setshowTechForm] = useState(false);
 
-    {
-      id: 2,
-      Title: "Backend Development",
-      tech:[
-        { id: 9,title: "PHP"},
-        { id: 10,title: "Node JS"},
-        { id: 11,title: "SQL"},
-      ],
-    },
-  ];
+  const handleClick = () => {
+    setshowForm(true);
+  };
 
-  localStorage.setItem("experienceData", JSON.stringify(experience));
+  const togglePopup = (id) => {
+    setshowTechForm(!showTechForm);
+    let exper2 = ExperienceArray.filter((exper) => exper.id == id);
+    // localStorage.setItem("FilterdExperItemForTech",JSON.stringify(exper2))
+    {
+      exper2.map((exp) => (
+        <>
+          {localStorage.setItem("experTitle", exp.Title)}
+          {localStorage.setItem("experID", exp.id)}
+          {localStorage.setItem("experTech", JSON.stringify(exp.tech))}
+        </>
+      ));
+    }
+  };
+
+  useEffect(() => {
+    fetchExperienceData();
+  }, []);
 
   return (
     <section id="experience">
       <h5>What Skills I Have</h5>
       <h2>
-      My Experience and Knowledge
-              <CgAddR
+        My Experience and Knowledge
+        <CgAddR
+          onClick={handleClick}
           style={{ marginLeft: "1%", fontSize: "20px", color: "#faebd7" }}
         />
       </h2>
-      <div className="container experience-container">
-        {experience.map((exper, index) => (
-          <div className="experience_frontend">
-            <div className="experience-edit-delete-icons">
-              <RiAddCircleLine />
+      {showForm ? (
+        <AddFieldForm showForm={showForm} setshowForm={setshowForm} />
+      ) : (
+        <div className="container experience-container">
+          {ExperienceArray.map((exper, index) => (
+            <div className="experience_frontend" key={index}>
+              <div className="experience-edit-delete-icons">
+                <RiAddCircleLine
+                  id={exper.id}
+                  onClick={(e) => togglePopup(e.currentTarget.id)}
+                />
+              </div>
+              <h3>{exper.Title}</h3>
+              <div className="experience-content">
+                {exper.tech.map((expfields, index) => (
+                  <article className="experience_details" key={index}>
+                    <BsFillPatchCheckFill
+                      className="experience_details-icons"
+                      key={index}
+                    />
+                    <div>
+                      <h4>{expfields.title}</h4>
+                      {/* <small className="text-light">{expfields.level}</small> */}
+                      {/* <MdOutlineModeEditOutline key={expfields.id} style={{ fontSize: "15px", marginLeft:"3px"}}  */}
+                      {/* /> */}
+                    </div>
+                  </article>
+                ))}
+              </div>
             </div>
-            <h3>{exper.Title}</h3>
-            <div className="experience-content">
-              {exper.tech.map((expfields, index) => (
-                <article key={expfields.id} className="experience_details">
-                  <BsFillPatchCheckFill className="experience_details-icons" />
-                  <div>
-                    <h4>{expfields.title}</h4>
-                    {/* <small className="text-light">{expfields.level}</small> */}
-                    {/* <MdOutlineModeEditOutline key={expfields.id} style={{ fontSize: "15px", marginLeft:"3px"}}  */}
-                    {/* /> */}
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
+      {showTechForm && (
+        <AddTechForm
+          handleClose={togglePopup}
+          title={localStorage.getItem("experTitle")}
+          id={localStorage.getItem("experID")}
+        />
+      )}
     </section>
   );
 };

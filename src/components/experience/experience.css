@@ -56,6 +56,69 @@ color: var(--color-primary);
     gap: 7px;
 }
 
+
+.AddExpForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width:fit-content;
+    padding: 5%;
+    gap: 1rem;
+    border-radius: 2%;
+    margin-left:25rem;
+
+    border: 2px solid  var(--color-primary);
+}
+
+
+.AddExpForm .LabelStyle{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.AddExpForm input{
+     width: 15rem;
+     height: 1rem;
+    
+} 
+
+.LabelStyle .removeButton{
+border-radius: 5%;
+padding: 2%;
+width:20%;
+color:var(--color-white);
+height:3rem;
+border: 1px solid var(--color-white);
+background-color: var(--color-bg);
+
+}
+
+.LabelStyle .addButton{
+    border-radius: 5%;
+    padding: 2%;
+    width:30%;
+    color:var(--color-white);
+    height:3rem;
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+
+}
+
+.submitButton{
+    border-radius: 2%;
+    height:2rem;
+    padding:1%;
+    width:100%;
+    color:var(--color-white);
+    height:3rem;
+    background-color: var(--color-bg-var);
+    margin-left: 18px;
+    margin-top: 2rem;
+
+}
+
+
 /* ================== Media Queries (medium devices) =============== */
 
 @media screen and (max-width:1024px) {
