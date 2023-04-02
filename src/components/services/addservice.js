@@ -1,17 +1,15 @@
 import React, { useContext, useState } from "react";
-import "./experience.css";
-import {ExperContext} from '../providers/experProvider'
-
-
+import "./services.css";
+import {ServiceContext} from '../providers/serviceprovider'
 const AddFieldForm = (props) => {
-  const{fetchExperienceData} =useContext(ExperContext);
+  const{fetchServiceData} =useContext(ServiceContext);
 
-  const [inputList, setinputList] = useState([{title:''}]);
+  const [inputList, setinputList] = useState([{ServiceTitle:''}]);
   console.log("inputList"+JSON.stringify(inputList));
-  const[title,setTitle]= useState('');
+  const[field,setfield]= useState('');
 
   const handleaddclick = () => {
-    setinputList([...inputList, {title:''}]);
+    setinputList([...inputList, {ServiceTitle:''}]);
   };
 
   const handleaddchange = (e, index) => {
@@ -28,25 +26,25 @@ const AddFieldForm = (props) => {
   };
 
 const addFunction=()=>{
-  if (title ==''){
-    alert("you should enter value for Title or title for tech ")
+  if (field ==''){
+    alert("you should enter value for Title")
   }
   else {
     let newItem={
       id:new Date,
-      Title:title,
-      tech:inputList
+      field:field,
+      serviceList:inputList
     }
     props.setshowForm(false);
 
    //before add the new value we read the localStoage.
-   const experFromStorage = JSON.parse(localStorage.ExperienceQ || '[]');
+   const serviceFromStorage = JSON.parse(localStorage.service || '[]');
    //add the new value and the previous array into new array.
-   const newExps = [newItem, ...experFromStorage];
+   const newService = [newItem, ...serviceFromStorage];
    //add the new array into the localStorage.
-   localStorage.ExperienceQ = JSON.stringify(newExps);
-   fetchExperienceData();
-   alert('Your experience added successfully!');
+   localStorage.service = JSON.stringify(newService);
+   fetchServiceData();
+   alert('Your service added successfully!');
   }
   
 }
@@ -55,16 +53,16 @@ const addFunction=()=>{
     <>
       <div className="AddExpForm">
         <label>Title</label>
-        <input type="text" placeholder="Title" name="Title" onChange={e=>{setTitle(e.target.value)}} required/>
+        <input type="text" placeholder="service field" name="field" onChange={e=>{setfield(e.target.value)}} required/>
         {inputList.map((input,index) => {
           return (
             <div key={index}>
-              <label key={input.index}>Tech</label>
-              <div className="LabelStyle" key={index} >
+              <label key={input.index}>ServiceTitle</label>
+              <div className="LabelStyle" >
                 <input
                   type="text"
-                  placeholder="title"
-                  name="title"
+                  placeholder="ServiceTitle"
+                  name="ServiceTitle"
                   onChange={(e) => handleaddchange(e, index)}
                   required
                 />
@@ -79,7 +77,7 @@ const addFunction=()=>{
                 )}
                 {inputList.length - 1 === index && (
                   <button className="addButton" onClick={handleaddclick}>
-                    add new Tech item
+                    add new service item
                   </button>
                 )}
               </div>

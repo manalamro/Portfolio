@@ -1,14 +1,11 @@
 const Services=[
 {
     id:0,
-    title:"web development",
+    field:"web development",
     serviceList:[
         {ServiceTitle:"responsive website"},
 
     ]
-}
+}]
 
-]
-
-
-    export{Services}
+export{Services}

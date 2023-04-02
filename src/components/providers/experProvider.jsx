@@ -6,6 +6,8 @@ const Experprovider = (props) => {
   const [ExperienceArray, setExperienceArray] = useState(ExperienceData);
   const fetchExperienceData = () => {
     const ExperienceFromStorage = JSON.parse(localStorage.ExperienceQ || "[]");
+    console.log("ExperienceFromStorage:"+JSON.stringify(ExperienceFromStorage));
+
     if (ExperienceFromStorage.length === 0) {
       localStorage.ExperienceQ = JSON.stringify(ExperienceData);
       setExperienceArray(ExperienceData);

@@ -20,14 +20,17 @@ const About = () => {
       "A fresh graduate with the desire and ability to learn more and improve myself by working on my strengths and weaknesses. I have some experience at React and good knowledge of Angular, NodeJS, and MySQL. Primarily, I am seeking a role where I can learn and work on new things in the web development field, which will upgrade my skills with time and make me more efficient."
   );
   localStorage.setItem("AboutMe", AboutMe1);
+  
   const [Experience, setExperience] = useState(
     localStorage.getItem("Experience") || "6 month"
   );
   localStorage.setItem("Experience", Experience);
+  
   const [clients, setclients] = useState(
     localStorage.getItem("clients") || "Not Yet"
   );
   localStorage.setItem("clients", clients);
+  
   const [Projects, setProjects] = useState(
     localStorage.getItem("Projects") || "10 completed"
   );

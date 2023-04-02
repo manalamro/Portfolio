@@ -1,54 +1,57 @@
-import React from "react";
-import './portfolio.css'
-import carshop from '../../assets/carshop.png'
-const Portfolio=()=>{
+import React,{useContext,useState,useEffect} from "react";
+import "./portfolio.css";
+import {PortofoiloContext} from '../providers/portfoiloProvider'
+import { CgAddR } from "react-icons/cg";
+import AddItemForm from './addnewitem'
 
-const portfoiloItems=[
-{
-    id:1,
-    image:carshop,
-    title:'car shop website',
-    github:"https://github.com/manalamro/car-shop"
-},
-{
-    id:2,
-    image:carshop,
-    title:'car shop website',
-    github:"https://github.com/manalamro/car-shop"
-},
-{
-    id:3,
-    image:carshop,
-    title:'car shop website',
-    github:"https://github.com/manalamro/car-shop"
-}
-]
+const Portfolio = () => {
+const {fetchPortofoiloeData, PortfoiloItemsArray}=useContext(PortofoiloContext);
+const [showForm,setshowForm]=useState(false);
 
-return(
+const handleClick = () => {
+  setshowForm(true);
+};
 
-<section id="portfolio">
-<h5>My Recent Work</h5>
-<h2>Portfoilo</h2>
-<div className="container portfoilo-container">
-    {
-        portfoiloItems.map(({id,image,title,github})=>{
-            return(
-    <article key={id} className="portofolio-item">
-    <div className="portfolio-item-image">
-    <img src={image} alt={title} />
-    </div>
-    <h3>{title}</h3>
-    <div className="portofolio-item-cta">
-    <a href={github} className="btn" target="_parent">Github</a>
-    </div>
+useEffect(() => {
+  fetchPortofoiloeData();
+}, []);
 
-</article>
-            )
-        })
-    }
-
-</div>
-</section>
+  return (
+    <section id="portfolio">
+      <h5>My Recent Work</h5>
+      <h2>Portfoilo
+      <CgAddR
+          onClick={handleClick}
+          style={{ marginLeft: "1%", fontSize: "20px", color: "#faebd7" }}
+        />
+      </h2>
+      {showForm ? (
+        <AddItemForm showForm={showForm} setshowForm={setshowForm} />
+      ) : (
+      <div className="container portfoilo-container">
+        {PortfoiloItemsArray.map((item,index) => {
+          return (
+            <article key={index} className="portofolio-item">
+              <div className="portfolio-item-image">
+                <img src={item.image} alt={item.title} />
+              </div>
+              <h3>{item.title}</h3>
+              <div className="portofolio-item-cta">
+                <a href={item.github} className="btn" target="_parent">
+                  Github
+                </a>
+                <a href={item.github} className="btn" target="_parent">
+                  live demo
+                </a>
+              </div>
+      
+            </article>
+          );
+        })}
+      </div>
 )}
+    </section>
+  );
+};
 
 export default Portfolio;

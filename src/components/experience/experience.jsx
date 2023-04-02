@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./experience.css";
 import { BsFillPatchCheckFill } from "react-icons/bs";
 import { CgAddR } from "react-icons/cg";
@@ -8,7 +8,7 @@ import { ExperContext } from "../providers/experProvider";
 import AddTechForm from "./addtechform";
 
 const Experience = () => {
-  const { fetchExperienceData,ExperienceArray } = useContext(ExperContext);
+  const { fetchExperienceData, ExperienceArray } = useContext(ExperContext);
   const [showForm, setshowForm] = useState(false);
   const [showTechForm, setshowTechForm] = useState(false);
 
@@ -19,7 +19,6 @@ const Experience = () => {
   const togglePopup = (id) => {
     setshowTechForm(!showTechForm);
     let exper2 = ExperienceArray.filter((exper) => exper.id == id);
-    // localStorage.setItem("FilterdExperItemForTech",JSON.stringify(exper2))
     {
       exper2.map((exp) => (
         <>
@@ -67,9 +66,6 @@ const Experience = () => {
                     />
                     <div>
                       <h4>{expfields.title}</h4>
-                      {/* <small className="text-light">{expfields.level}</small> */}
-                      {/* <MdOutlineModeEditOutline key={expfields.id} style={{ fontSize: "15px", marginLeft:"3px"}}  */}
-                      {/* /> */}
                     </div>
                   </article>
                 ))}

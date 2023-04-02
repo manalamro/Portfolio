@@ -1,10 +1,10 @@
 .container.contact-container{
-width: 58%;
-display: grid;
-grid-template-columns: 30% 58%;
-gap:12%;
-
-}
+    width: 58%;
+    display: grid;
+    grid-template-columns: 30% 58%;
+    gap:12%;
+    
+    }
 
 .contect-options{
     display:flex;
